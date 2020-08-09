@@ -1,0 +1,34 @@
+<audio id="audiofile" src="syncaudio.mp3" controls></audio><br>
+        <div id="subtitles"></div>
+        <script>
+        ( function(win, doc) {
+            var audioPlayer = doc.getElementById("audiofile");
+            var subtitles = doc.getElementById("subtitles");
+            var syncData = [
+                  { "end": "3.564","start": "0.385","text": "unni gunda" },
+                  {"end": "5.331","start": "4.223","text": "unni gunda" },
+                  {"end": "11.102","start": "8.067","text": "unni gunda" },
+                  {"end": "13.125","start": "11.833","text": "unni gunda" }
+                  /* ... and so on ... full json is in the demo */
+                ];
+            createSubtitle();
+
+            function createSubtitle()
+            {
+                var element;
+                for (var i = 0; i < syncData.length; i++) {
+                    element = doc.createElement('span');
+                    element.setAttribute("id", "c_" + i);
+                    element.innerText = syncData[i].text + " ";
+                    subtitles.appendChild(element);
+                }
+            }
+
+            audioPlayer.addEventListener("timeupdate", function(e){
+                syncData.forEach(function(element, index, array){
+                    if( audioPlayer.currentTime >= element.start && audioPlayer.currentTime <= element.end )
+                        subtitles.children[index].style.background = 'yellow';
+                });
+            });
+        }(window, document));
+        </script>

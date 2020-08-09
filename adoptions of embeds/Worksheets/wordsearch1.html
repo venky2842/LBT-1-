@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<style type="text/css">
+		body {
+  font-family:helvetica neue,san-serif;
+  text-align:center;
+  background:#f9f9f9;
+}
+#grid,.box{
+  -webkit-user-select:none;
+}
+#main {
+  margin:20px auto;
+  max-width:720px;
+}
+#grid {
+  margin:20px auto 40px;
+  box-shadow:0 0 20px rgba(0,0,0,0.2);
+  width:410px;
+  height:410px;
+  padding:20px;
+  background:#C3E5F1;
+  border-radius:10px;
+  font-size:20px;
+  float:left;
+  overflow:hidden;
+  cursor:pointer;
+}
+@media (max-width:740px){
+  #grid{
+    float:none;
+  }
+}
+@media (max-width:480px){
+  #grid{
+    margin-bottom:20px;
+    padding:5px;
+    width:288px;
+    height:288px;
+    font-size:14px;
+    border-radius:5px;
+  }
+}
+.box {
+  margin:3px;
+  width:45px;
+  height:45px;
+  line-height:45px;
+  text-align:center;
+  background:#fff;
+  box-shadow:0 0 5px rgba(0,0,0,0.1);
+  border-radius:5px;
+  float:left;
+}
+@media (max-width:480px){
+  .box{
+    width:30px;
+    height:30px;
+    line-height:30px;
+  }
+}
+.box.highlight{
+  background:#111;
+  color:#fff;
+}
+.box.found-red {
+  background: #ea2c2c;
+  background: -webkit-linear-gradient(#ea2c2c 50%, #d62222 51%);
+  background: -moz-linear-gradient(#ea2c2c 50%, #d62222 51%);
+  background: -o-linear-gradient(#ea2c2c 50%, #d62222 51%);
+  background: linear-gradient(#ea2c2c 50%, #d62222 51%); 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea2c2c', endColorstr='#d62222',GradientType=0 );
+  color:#fff;
+}
+.box.found-green {
+  background: #a1d54f;
+background: -webkit-linear-gradient(#a1d54f 50%, #80c217 51%);
+background: -moz-linear-gradient(#a1d54f 50%, #80c217 51%);
+background: -o-linear-gradient(#a1d54f 50%, #80c217 51%);
+background: linear-gradient(#a1d54f 50%, #80c217 51%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1d54f', endColorstr='#80c217',GradientType=0 );
+  color:#fff;
+}
+.box.found-yellow{
+  background: #fff94f;
+  background: -webkit-linear-gradient(#fff94f 50%, #ffe500 51%);
+  background: -moz-linear-gradient(#fff94f 50%, #ffe500 51%);
+  background: -o-linear-gradient(#fff94f 50%, #ffe500 51%);
+  background: linear-gradient(#fff94f 50%, #ffe500 51%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff94f', endColorstr='#ffe500',GradientType=0 );
+  color:#fff;
+}
+.box.found-blue{
+  background: #71ceef;
+  background: -webkit-linear-gradient(#71ceef 50%, #21b4e2 51%);
+  background: -moz-linear-gradient(#71ceef 50%, #21b4e2 51%);
+  background: -o-linear-gradient(#71ceef 50%, #21b4e2 51%);
+  background: linear-gradient(#71ceef 50%, #21b4e2 51%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#71ceef', endColorstr='#21b4e2',GradientType=0 );
+  color:#fff;
+}
+.box.found-purple {
+  background: #c928a9;
+  background: -webkit-linear-gradient(#c928a9 49%, #b5177d 49%);
+  background: -moz-linear-gradient(#c928a9 49%, #b5177d 49%);
+  background: -o-linear-gradient(#c928a9 49%, #b5177d 49%);
+  background: linear-gradient(#c928a9 49%, #b5177d 49%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c928a9', endColorstr='#b5177d',GradientType=0 );
+  color:#fff;
+}
+#listContainer {
+  margin:20px 0 0 20px;
+  padding:20px;
+  float:left;
+  height:410px;
+  width:200px;
+  box-shadow:0 0 20px rgba(0,0,0,0.1);
+  background:#C3E5F1;
+  border-radius:10px;
+}
+@media (max-width:740px){
+  #listContainer{
+    margin:auto;
+    float:none;
+    width:250px;
+    height:auto;
+    padding-top:5px;
+  }
+}
+#list{
+  margin:auto;
+  padding-left:20px;
+  font-size:20px;
+  text-align:left;
+  list-style:none;
+}
+#list li.found{
+  color:gray;
+  text-decoration:line-through;
+}
+#restart {
+  margin:20px auto 0;
+  line-height:40px;
+  background:rgba(0,0,0,0.1);
+  border-radius:5px;
+  cursor:pointer;
+  display:none;
+}
+	</style>
+</head>
+<body>
+<div id="main">
+  <div id="x8"></div>
+  <div id="grid">
+    <div class="box" data-word="Apple">A</div><div class="box" data-word="Apple">P</div><div class="box" data-word="Apple">P</div><div class="box" data-word="Apple">L</div><div class="box" data-word="Apple">E</div><div class="box">K</div><div class="box">M</div><div class="box" data-word="Pizza">P</div><div class="box">P</div><div class="box">C</div><div class="box">F</div><div class="box">D</div><div class="box">F</div><div class="box">B</div><div class="box">V</div><div class="box" data-word="Pizza">I</div><div class="box">Q</div><div class="box" data-word="Grape">G</div><div class="box">J</div><div class="box">T</div><div class="box" data-word="Cake">E</div><div class="box">Y</div><div class="box">J</div><div class="box" data-word="Pizza">Z</div><div class="box">W</div><div class="box">N</div><div class="box" data-word="Grape">R</div><div class="box" data-word="Cake">K</div><div class="box">O</div><div class="box">L</div><div class="box">N</div><div class="box" data-word="Pizza">Z</div><div class="box">V</div><div class="box">I</div><div class="box" data-word="Cake">A</div><div class="box" data-word="Grape">A</div><div class="box">T</div><div class="box">F</div><div class="box">P</div><div class="box" data-word="Pizza">A</div><div class="box">K</div><div class="box" data-word="Cake">C</div><div class="box">N</div><div class="box">E</div><div class="box" data-word="Grape">P</div><div class="box">O</div><div class="box">X</div><div class="box">J</div><div class="box">X</div><div class="box">J</div><div class="box">G</div><div class="box">L</div><div class="box">D</div><div class="box" data-word="Grape">E</div><div class="box">V</div><div class="box">D</div><div class="box" data-word="Sandwich">S</div><div class="box" data-word="Sandwich">A</div><div class="box" data-word="Sandwich">N</div><div class="box" data-word="Sandwich">D</div><div class="box" data-word="Sandwich">W</div><div class="box" data-word="Sandwich">I</div><div class="box" data-word="Sandwich">C</div><div class="box" data-word="Sandwich">H</div>
+  </div>
+  <div id="listContainer">
+    <h2>Word Search</h2>
+    <ul id="list">
+      <li>Apple</li>
+      <li>Grape</li>
+      <li>Pizza</li>
+      <li>Cake</li>
+      <li>Sandwich</li>
+    </ul>
+    <div id="restart">
+      Restart Game
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript">
+	FastClick.attach(document.body);
+
+var wordsToFind = $('#list li').length,
+    colors = ['red', 'green', 'yellow', 'blue', 'purple'],
+    found = 0,
+    clicking = false;
+
+$('#restart').click(function() {
+  $('.box').attr('class', 'box');
+  $('#list li').removeClass('found');
+  $('#restart').hide();
+  found = 0;
+});
+
+$('#grid').mousedown(function(){
+    clicking = true;
+});
+
+$('#grid').mouseup(function(){
+  clicking = false;
+  $('.box').removeClass('highlight');
+})
+
+$('.box').mouseover().mouseout(function() {
+  if(clicking){
+  // Toggle highlight to box on click
+  $(this).toggleClass('highlight');
+  var word = $(this).attr('data-word'), // Get word attribute from clicked box.
+    wordLen = word.length, // How long is the word.
+    $box = $('.box[data-word="' + word + '"]'); // Get all box's with word attribute.
+  if ($('.box[data-word="' + word + '"].highlight').length == wordLen) {
+    // Word is fully highlighted, remove highlight and add class fount-colorArray
+    $box.removeClass('highlight').addClass('found-' + colors[found]);
+    // Add found class to the list item that contains "word"
+    $('li:contains("' + word + '")').addClass('found');
+    $('.box').removeClass('highlight');
+    found++;
+  }
+  console.log(found + ' - ' + wordsToFind);
+  if (found == wordsToFind) {
+    alert('Winner!');
+    $('#restart').show();
+  }
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css?family=Chewy&display=swap');
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Chewy', cursive;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 2px;
+}
+
+.container {
+  background: #3138AE;
+}
+
+.wrapper {
+  max-width: 800px;
+  margin: auto;
+}
+
+.screen-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px 20px 70px;
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}
+
+.quiz-screen-step {
+  color: #6B71E4;
+}
+
+.quiz-image-wrapper {
+  max-width: 100%;
+  margin: 50px auto;
+  position: relative;
+}
+
+.quiz-image-wrapper:before {
+  content: '';
+  background: url('./assets/Wapuu-Bg.png') no-repeat center;
+  background-size: contain;
+  height: 100%;
+  left: -65px;
+  right: -65px;
+  display: block;
+  position: absolute;
+}
+
+.quiz-image {
+  max-width: 100%;
+  width: 300px;
+  position: relative;
+  z-index: 1;
+}
+
+.quiz-timer {
+  width: 550px;
+  max-width: 100%;
+  height: 20px;
+  background: #000501;
+  border-radius: 3em;
+  margin-bottom: 50px;
+  padding: 5px 6px;
+}
+
+.quiz-timer span {
+  display: inline-block;
+  background: linear-gradient(90deg, #FFD500, #FF5700);
+  height: 10px;
+  vertical-align: top;
+  border-radius: 3em;
+
+  animation: progressbar-countdown;
+  animation-duration: 10s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+  animation-timing-function: linear;
+}
+
+@keyframes progressbar-countdown {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+.quiz-question {
+  margin-bottom: 50px;
+}
+
+.how-to-play-screen .default-button {
+  margin-bottom: 60px;
+  margin-top: 30px;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+  width: 600px;
+  max-width: 100%;
+}
+
+.button-outer {
+  flex-basis: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+
+.default-button {
+  background: #FFD500;
+  border-radius: 3em;
+  font-family: 'Chewy', cursive;
+  font-size: 18px;
+  color: #010501;
+  letter-spacing: 2.45px;
+  border: 4px solid #010501;
+  padding: 10px 8px;
+  text-transform: uppercase;
+  transition: background .2s;
+  outline: none;
+  width: 250px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.default-button:hover {
+  background: #FF8800;
+}
+
+.default-button[disabled] {
+  border-color: #5057D4;
+  background: transparent;
+  color: #5057D4;
+  cursor: default;
+}
+
+.default-button[disabled]:hover {
+  background: transparent;
+}
+
+.default-button.correct {
+  cursor: default;
+  background: #ACBD00;
+  color: #010501;
+  border-color: #010501;
+}
+
+.default-button.correct::before {
+  content: '';
+  height: 18px;
+  width: 18px;
+  display: inline-block;
+  background: url('./assets/check-mark.png') center no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+  margin-right: 5px;
+  margin-top: -2px;
+}
+
+.default-button.correct:hover {
+  background: #ACBD00;
+  color: #010501;
+  border-color: #010501;
+}
+
+.default-button.wrong {
+  cursor: default;
+  background: #F6484C;
+  color: #010501;
+  border-color: #010501;
+}
+
+.default-button.wrong::before {
+  content: '';
+  height: 18px;
+  width: 18px;
+  display: inline-block;
+  background: url('./assets/cross.png') center no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+  margin-right: 5px;
+  margin-top: -2px;
+}
+
+.default-button.wrong:hover {
+  background: #F6484C;
+  color: #010501;
+  border-color: #010501;
+}
+
+.title {
+  font-size: 32px;
+  margin-top: 100px;
+}
+.text {
+  line-height: 24px;
+  font-size: 16px;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  color: #B8BBF5;
+  text-transform: none;
+}
+
+.quiz-logo {
+  position: absolute;
+  bottom: 20px;
+}
+
+.quiz-corner-logo {
+  position: absolute;
+  left: 0;
+  top: 15px;
+  width: 100px;
+}
+.close-button {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: 'Chewy', cursive;
+  font-size: 34px;
+  outline: none;
+  text-transform: none;
+  cursor: pointer;
+  transition: color .2s;
+}
+
+.close-button:hover {
+  color: #eee;
+}
+.score-name {
+  margin: 0 0 28px;
+  font-size: 46px;
+}
+.score {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.description {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #B8BBF5;
+  text-transform: none;
+  line-height: 24px;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+@media screen and (min-width: 700px) {
+  .screen-section {
+    padding: 50px;
+  }
+  .button-outer {
+    flex-basis: 50%;
+  }
+}
+	</style>
+</head>
+<body>
+	<div class="container">
+    <div class="wrapper">
+        <div class="screen-section main-screen">
+            <div class="quiz-image-wrapper">
+                <img class="quiz-image" src="./assets/Game-Logo.png" alt="Wapuu Trivia LOGO">
+            </div>
+            <h1>Wapuu Trivia</h1>
+            <div class="button-container">
+                <div class="button-outer">
+                    <button class="default-button" id="start">Start</button>
+                </div>
+                <div class="button-outer">
+                    <button class="default-button" id="how-to">How to play?</button>
+                </div>
+            </div>
+            <div class="quiz-logo">
+                <img src="assets/VCWB-Logo.png" alt="VCWB logo">
+            </div>
+        </div>
+
+        <div class="screen-section how-to-play-screen hidden">
+            <img class="quiz-corner-logo" src="./assets/Game-Logo.png" alt="Wapuu Trivia LOGO">
+            <button type="button" id="close-how-to" class="close-button">X</button>
+            <h2 class="title">How to play? It's easy and fun...</h2>
+            <p class="text">Answer to Wapuu trivia questions and find out how well do you know the city of Wapuss!
+                Challenge yourself and share your Wapuu status with your friends (it's not showing off if you back it up).</p>
+
+            <p class="text">To start playing the Wapuu trivia game, first, tune to see the coolest Wapuus of all the WordCamps. When you are ready, click Start and choose the correct answer from the four given options.</p>
+
+            <p class="text">You will have 10 seconds for each question to choose your answer. After the time is up, the next question will load. So, stay tuned, be quick and pay attention to the details of each Wapuu.</p>
+
+            <p class="text">You will receive one point for each correct answer, and zero points for a wrong one. If you are right on the question, the option you choose will be green and you will get a point. If your answer is not correct, it will turn into red and no extra points for you.</p>
+
+            <p class="text">When you have finished the Wapuu trivia, your total score will indicate how well you know Wapuus by their city. Enjoy!
+            </p>
+            <button class="default-button" id="start2">Ok. Let's start</button>
+            <div class="quiz-logo">
+                <img src="assets/VCWB-Logo.png" alt="VCWB logo">
+            </div>
+        </div>
+
+        <div class="screen-section quiz-screen hidden">
+            <div class="quiz-screen-step">
+                Round <span id="question-index"></span> out of <span id="question-count"></span>
+            </div>
+            <div class="quiz-image-wrapper">
+                <img class="quiz-image" id="question-image" src="https://wapu.us/wp-content/uploads/2019/03/Friedensreiter-Wapuu-WCOS-540x513.png" alt="">
+            </div>
+            <div class="quiz-timer" id="progress-bar"></div>
+            <div class="quiz-question" id="quiz-text"></div>
+            <div class="button-container" id="answers-container">
+                <div class="button-outer">
+                    <button id="answer0" class="default-button"></button>
+                </div>
+                <div class="button-outer">
+                    <button id="answer1" class="default-button"></button>
+                </div>
+                <div class="button-outer">
+                    <button id="answer2" class="default-button"></button>
+                </div>
+                <div class="button-outer">
+                    <button id="answer3" class="default-button"></button>
+                </div>
+            </div>
+            <div class="quiz-logo">
+                <img src="assets/VCWB-Logo.png" alt="VCWB logo">
+            </div>
+        </div>
+
+        <div class="screen-section result-screen hidden">
+            <div class="quiz-image-wrapper">
+                <img class="quiz-image" src="./assets/Game-Logo.png" alt="Wapuu Trivia LOGO">
+            </div>
+            <p class="score">
+                <span id="score"></span> out of <span id="score-total"></span>
+            </p>
+            <h1 id="score-name" class="score-name">Wapuu Trivia</h1>
+            <span class="description">
+                Along with that, he holds the untamed but attractive character of our beloved Greek historical figure and the beautiful blond curls that crown his face.
+            </span>
+
+            <!--<button>share facebook</button>-->
+            <!--<button>share twitter</button>-->
+            <button class="default-button" id="start3">Play again</button>
+
+            <div class="quiz-logo">
+                <img src="assets/VCWB-Logo.png" alt="VCWB logo">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	(function() {
+  let startButton = document.querySelector('#start');
+  let startButton2 = document.querySelector('#start2');
+  let startButton3 = document.querySelector('#start3');
+  let howToButton = document.querySelector('#how-to');
+  let closeHowToButton = document.querySelector('#close-how-to');
+  let howToPlayScreen = document.querySelector('.how-to-play-screen');
+  let mainScreen = document.querySelector('.main-screen');
+  let quizScreen = document.querySelector('.quiz-screen');
+  let resultScreen = document.querySelector('.result-screen');
+
+  startButton.addEventListener('click', showGamePlay);
+  startButton2.addEventListener('click', showGamePlay);
+  startButton3.addEventListener('click', showGamePlay);
+
+  howToButton.addEventListener('click', function() {
+    howToPlayScreen.classList.remove('hidden');
+    mainScreen.classList.add('hidden');
+  });
+
+  closeHowToButton.addEventListener('click', function() {
+    howToPlayScreen.classList.add('hidden');
+    mainScreen.classList.remove('hidden');
+  });
+
+  let questionLength = 10;
+  let questionIndex = 0;
+  let score = 0;
+  let questions = [];
+  let timer = null
+
+  function showGamePlay () {
+    // TODO: show spinner
+    questionIndex = 0;
+    questions = [];
+    score = 0;
+
+    window.setTimeout(function () {
+      // TODO: get questions from server
+
+      mainScreen.classList.add('hidden');
+      howToPlayScreen.classList.add('hidden');
+      resultScreen.classList.add('hidden');
+      quizScreen.classList.remove('hidden');
+
+      questions = [
+        { image: '001', answers: ['Brno', 'Riga', 'London', 'Brasil'], correct: 'Brno'},
+        { image: '002', answers: ['Brno1', 'Riga1', 'London1', 'Brasil1'], correct: 'Riga1'},
+        { image: '003', answers: ['Brno2', 'Riga2', 'London2', 'Brasil2'], correct: 'London2'},
+        { image: '004', answers: ['Brno3', 'Riga3', 'London3', 'Brasil3'], correct: 'London3'},
+        { image: '005', answers: ['Brno4', 'Riga4', 'London4', 'Brasil4'], correct: 'Riga4'},
+        { image: '006', answers: ['Brno5', 'Riga5', 'London5', 'Brasil5'], correct: 'Riga5'},
+        { image: '007', answers: ['Brno6', 'Riga6', 'London6', 'Brasil6'], correct: 'Brno6'},
+        { image: '008', answers: ['Brno7', 'Riga7', 'London7', 'Brasil7'], correct: 'Brasil7'},
+        { image: '009', answers: ['Brno8', 'Riga8', 'London8', 'Brasil8'], correct: 'London8'},
+        { image: '010', answers: ['Brno9', 'Riga9', 'London9', 'Brasil9'], correct: 'Brasil9'}
+      ];
+      let questionCount = document.getElementById('question-count');
+      questionCount.innerHTML = questionLength.toString();
+      populate()
+    }, 50);
+  }
+
+  let isEnded = function () {
+    return questionLength === questionIndex;
+  };
+
+  function populate() {
+    let answersContainer = document.getElementById('answers-container');
+    let answerButtons = answersContainer.querySelectorAll('.default-button');
+
+    answerButtons.forEach(function(element) {
+      element.disabled = false;
+      element.classList.remove('correct');
+      element.classList.remove('wrong');
+    });
+
+    if (isEnded()) {
+      showScores();
+    } else {
+      startProgressbar();
+      timer = window.setTimeout(function() {
+        guess(null);
+      }, 10000);
+
+      setQuizText('This cute wapuu is from');
+
+      let imageElement = document.getElementById('question-image');
+      imageElement.src = './assets/wapuus/' + questions[questionIndex].image + '.png';
+
+      // show choices
+      let choices = questions[questionIndex].answers;
+      for (let i = 0; i < choices.length; i++) {
+        let element = document.getElementById('answer' + i);
+        element.innerHTML = choices[i];
+
+        element.addEventListener('click', handleAnswerClick)
+      }
+
+      showProgress();
+    }
+  }
+
+  function handleAnswerClick (e) {
+    let el = e.currentTarget;
+    let answer = el.innerHTML;
+    el.removeEventListener('click', handleAnswerClick);
+    guess(answer);
+  }
+
+  function showProgress () {
+    let questionIndexElement = document.getElementById('question-index');
+    let index = questionIndex + 1;
+    questionIndexElement.innerHTML = index.toString();
+  }
+
+  function guess(answer) {
+    clearTimeout(timer);
+    let answersContainer = document.getElementById('answers-container');
+    let answerButtons = answersContainer.querySelectorAll('.default-button');
+
+    answerButtons.forEach(function(element) {
+      element.disabled = true;
+      if (element.innerHTML === questions[questionIndex].correct) {
+        element.classList.add('correct');
+      }
+    });
+
+    stopProgressbar();
+
+    if (questions[questionIndex].correct === answer) { // correct answer
+      score++;
+      setQuizText('WAPUUTASTIC … YOU’RE RIGHT!')
+    } else if (answer) { // incorrect answer
+      setQuizText('NICE TRY … YOU WERE CLOSE :P');
+      answerButtons.forEach(function(element) {
+        if (element.innerHTML === answer) {
+          element.classList.add('wrong');
+        }
+      });
+    } else {
+      setQuizText('YOUR TIME IS OUT … PO PO POOO')
+    }
+
+    questionIndex++;
+
+    window.setTimeout(function() {
+      populate();
+    }, 3000);
+  }
+
+  function setQuizText (text) {
+    let el = document.getElementById('quiz-text');
+    el.innerHTML = text;
+  }
+
+  function showScores () {
+    let scoreElement = document.getElementById('score');
+    let scoreTotalElement = document.getElementById('score-total');
+    let scoreNameElement = document.getElementById('score-name');
+
+    scoreElement.innerHTML = score.toString();
+    scoreTotalElement.innerHTML = questionLength.toString();
+
+    if (score < 4) {
+      scoreNameElement.innerHTML = 'Newbuu'
+    } else if (score < 7) {
+      scoreNameElement.innerHTML = 'Rookiepuu'
+    } else if (score < 10) {
+      scoreNameElement.innerHTML = 'Wapuu expertuu'
+    } else {
+      scoreNameElement.innerHTML = 'Grandmuuster'
+    }
+
+    quizScreen.classList.add('hidden');
+    resultScreen.classList.remove('hidden');
+  }
+
+  function startProgressbar() {
+    // We select the div that we want to turn into a progressbar
+    let progressbar = document.getElementById('progress-bar');
+    progressbar.innerHTML = '';
+    // We create the div that changes width to show progress
+    let progressbarInner = document.createElement('span');
+
+    // Append the progressbar to the main progressbardiv
+    progressbar.appendChild(progressbarInner);
+
+    // When everything is set up we start the animation
+    progressbarInner.style.animationPlayState = 'running';
+  }
+
+  function stopProgressbar () {
+    let progressbar = document.getElementById('progress-bar');
+    let progressbarInner = progressbar.querySelector('span');
+    progressbarInner.style.animationPlayState = 'paused';
+  }
+
+
+
+  // your page initialization code here
+  // the DOM will be available here
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		body {
+  background-color: #044962;
+}
+.wordstyles{
+  position: relative;
+  text-align: center;
+  text-transform: capitalize;
+  top: 32px;
+  font-size: 50px;
+  color: white;
+}
+h2 {
+  text-align: center;
+  font-family: "Tillana", sans-serif;
+  font-weight: 700;
+  font-size: 30pt;
+  color: white;
+}
+
+.bubble-wrap {
+  position: fixed;
+  bottom: -13em;
+  padding: 3em;
+}
+
+.bubble {
+  border-radius: 5em;
+  box-shadow: 1px 1px 7px rgba(204, 204, 204, 0.7);
+  height: 8em;
+  width: 8em;
+  cursor: pointer;
+  background-image: radial-gradient(ellipse at 75% 70%, rgba(230, 230, 230, 0.8), rgba(230, 230, 230, 0.15) 9%, rgba(26, 26, 26, 0.1) 90%, rgba(26, 26, 26, 0.1)), radial-gradient(ellipse at 25% 30%, rgba(230, 230, 230, 0.8), rgba(153, 153, 153, 0.2) 7%, rgba(26, 26, 26, 0.1) 90%, rgba(26, 26, 26, 0.1));
+}
+
+.explosion {
+  color: white;
+  position: fixed;
+  transform-origin: center;
+  font-family: "Tillana", sans-serif;
+  font-weight: 700;
+  font-size: 20pt;
+}
+
+	</style>
+</head>
+<body onclick="stop();">
+
+<h2 id="score">Pop all the bubbles!</h2>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.2.2/web-animations.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/just-animate/1.1.0/just-animate-all.min.js"></script>
+<script type="text/javascript">
+    "use strict";
+  /*function stop(){
+    alert("wait");
+  }*/
+var explosionWords = ['Pop!', 'Snap!', 'Crack!'];
+var bubblesPopped = 0;
+var $score = document.getElementById('score');
+function updateScore(offset) {
+  bubblesPopped += offset;
+  $score.innerHTML = 'Popped ' + bubblesPopped + ' bubbles!';
+}
+function createBubble1() {
+  // create bubble graphic
+  var $bubble = document.createElement('div');
+  $bubble.classList.add('bubble');
+  var $word = document.createElement('div');
+  $word.classList.add('wordstyles');
+  $word.innerHTML = "yes";
+  // wrap in a larger div so bubbles are easy to pop while moving
+  var $boundingBox1 = document.createElement('div');
+  $boundingBox1.classList.add('bubble-wrap');
+  $boundingBox1.style.left = 5 + Math.random() * 90 + 'vw';
+  $bubble.appendChild($word);
+  $boundingBox1.appendChild($bubble);
+  $boundingBox1.addEventListener('click', destroyBubble($boundingBox1, 1));
+  // attach to doc and return
+  document.body.appendChild($boundingBox1);
+  return $boundingBox1;
+}
+function createBubble2() {
+  // create bubble graphic
+  var $bubble = document.createElement('div');
+  $bubble.classList.add('bubble');
+  var $word = document.createElement('div');
+  $word.classList.add('wordstyles');
+  $word.innerHTML = "is";
+  // wrap in a larger div so bubbles are easy to pop while moving
+  var $boundingBox2 = document.createElement('div');
+  $boundingBox2.classList.add('bubble-wrap');
+  $boundingBox2.style.left = 5 + Math.random() * 90 + 'vw';
+  $bubble.appendChild($word);
+  $boundingBox2.appendChild($bubble);
+  $boundingBox2.addEventListener('click', destroyBubble($boundingBox2, 2));
+  // attach to doc and return
+  document.body.appendChild($boundingBox2);
+  return $boundingBox2;
+}
+function createBubble3() {
+  // create bubble graphic
+  var $bubble = document.createElement('div');
+  $bubble.classList.add('bubble');
+  var $word = document.createElement('div');
+  $word.classList.add('wordstyles');
+  $word.innerHTML = "mum";
+  // wrap in a larger div so bubbles are easy to pop while moving
+  var $boundingBox3 = document.createElement('div');
+  $boundingBox3.classList.add('bubble-wrap');
+  $boundingBox3.style.left = 5 + Math.random() * 90 + 'vw';
+  $bubble.appendChild($word);
+  $boundingBox3.appendChild($bubble);
+  $boundingBox3.addEventListener('click', destroyBubble($boundingBox3, 3));
+  // attach to doc and return
+  document.body.appendChild($boundingBox3);
+  return $boundingBox3;
+}
+function createBubble4() {
+  // create bubble graphic
+  var $bubble = document.createElement('div');
+  $bubble.classList.add('bubble');
+  var $word = document.createElement('div');
+  $word.classList.add('wordstyles');
+  $word.innerHTML = "can";
+  // wrap in a larger div so bubbles are easy to pop while moving
+  var $boundingBox4 = document.createElement('div');
+  $boundingBox4.classList.add('bubble-wrap');
+  $boundingBox4.style.left = 5 + Math.random() * 90 + 'vw';
+  $bubble.appendChild($word);
+  $boundingBox4.appendChild($bubble);
+  $boundingBox4.addEventListener('click', destroyBubble($boundingBox4, 4));
+  // attach to doc and return
+  document.body.appendChild($boundingBox4);
+  return $boundingBox4;
+}
+function createBubble5() {
+  // create bubble graphic
+  var $bubble = document.createElement('div');
+  $bubble.classList.add('bubble');
+  var $word = document.createElement('div');
+  $word.classList.add('wordstyles');
+  $word.innerHTML = "dad";
+  // wrap in a larger div so bubbles are easy to pop while moving
+  var $boundingBox5 = document.createElement('div');
+  $boundingBox5.classList.add('bubble-wrap');
+  $boundingBox5.style.left = 5 + Math.random() * 90 + 'vw';
+  $bubble.appendChild($word);
+  $boundingBox5.appendChild($bubble);
+  $boundingBox5.addEventListener('click', destroyBubble($boundingBox5, 5));
+  // attach to doc and return
+  document.body.appendChild($boundingBox5);
+  return $boundingBox5;
+}
+function createBubble6() {
+  // create bubble graphic
+  var $bubble = document.createElement('div');
+  $bubble.classList.add('bubble');
+  var $word = document.createElement('div');
+  $word.classList.add('wordstyles');
+  $word.innerHTML = "look";
+  // wrap in a larger div so bubbles are easy to pop while moving
+  var $boundingBox5 = document.createElement('div');
+  $boundingBox5.classList.add('bubble-wrap');
+  $boundingBox5.style.left = 5 + Math.random() * 90 + 'vw';
+  $bubble.appendChild($word);
+  $boundingBox5.appendChild($bubble);
+  $boundingBox5.addEventListener('click', destroyBubble($boundingBox5, 6));
+  // attach to doc and return
+  document.body.appendChild($boundingBox5);
+  return $boundingBox5;
+}
+function createBubble7() {
+  // create bubble graphic
+  var $bubble = document.createElement('div');
+  $bubble.classList.add('bubble');
+  var $word = document.createElement('div');
+  $word.classList.add('wordstyles');
+  $word.innerHTML = "it";
+  // wrap in a larger div so bubbles are easy to pop while moving
+  var $boundingBox5 = document.createElement('div');
+  $boundingBox5.classList.add('bubble-wrap');
+  $boundingBox5.style.left = 5 + Math.random() * 90 + 'vw';
+  $bubble.appendChild($word);
+  $boundingBox5.appendChild($bubble);
+  $boundingBox5.addEventListener('click', destroyBubble($boundingBox5, 7));
+  // attach to doc and return
+  document.body.appendChild($boundingBox5);
+  return $boundingBox5;
+}
+function createExplosion(x, y) {
+  // create explosion at the coordinates
+  var $explosion = document.createElement('div');
+  $explosion.classList.add('explosion');
+  $explosion.style.left = x + 'px';
+  $explosion.style.top = y + 'px';
+  $explosion.innerHTML = explosionWords[Math.floor(Math.random() * 3)];
+  document.body.appendChild($explosion);
+  // animate cartoon pop on words
+  just.animate({
+    targets: $explosion,
+    to: 600,
+    fill: 'forwards',
+    easing: 'ease-out',
+    css: [
+    { scale: 1 },
+    { offset: 0.2, scale: 1.4, opacity: 1 },
+    { scale: .7, opacity: 0 }] }).
+
+
+  on('finish', function () {return document.body.removeChild($explosion);});
+}
+function destroyBubble($bubble, num) {
+  return function () {
+    // create explosion at bubbles old position
+    var rect = $bubble.getBoundingClientRect();
+    var centerX = (rect.right - rect.left) * .5 + rect.left;
+    var centerY = (rect.bottom - rect.top) * .5 + rect.top;
+    createExplosion(centerX, centerY);
+    if(num == 1)updateScore(1);
+     //remove bubble
+    $bubble.style.display = 'none';
+  };
+}
+function generateBubbles(min, max) {
+  var length = min + Math.round(Math.random() * (max - min));
+  var targets = [];
+  for (var i = 0; i < length; i++) {
+    targets.push(createBubble1());
+    targets.push(createBubble2());
+    targets.push(createBubble3());
+    targets.push(createBubble4());
+    targets.push(createBubble5());
+    targets.push(createBubble6());
+    targets.push(createBubble7());
+  }
+  return targets;
+}
+function animateBubbles() {
+  var bubbles = generateBubbles(1, 1);
+  var player = just.animate({
+    targets: bubbles,
+    to: '8s',
+    easing: 'ease-in',
+    css: {
+      transform: function () {
+        var endTranslateY = just.random(100, 110, 'vh', true);
+        var startScale = just.random(70, 100, null, true);
+        var endScale = just.random(70, 100, null, true);
+        return [
+        'translateY(0) scale(0.' + startScale + ')',
+        'translateY(-' + endTranslateY + ') scale(0.' + endScale + ')'];
+
+      } },
+
+    delay: function () {
+      return just.random(0, 5000);
+    } })
+
+  .on('finish', function () {
+    bubbles.forEach(function (bubble) {
+      document.body.removeChild(bubble);
+    });
+  });
+  return player;
+}
+function startBubbles() {
+  animateBubbles().on('finish', startBubbles);
+}
+function startWaves() {
+  just.animate({
+    targets: document.body,
+    to: '1s',
+    fill: 'both',
+    css: {
+      backgroundColor: [
+      'hsl(196, 92.2%, 20%)',
+      'hsl(196, 92.2%, 15%)'] },
+
+
+    direction: 'alternate',
+    iterations: Infinity });
+
+}
+startBubbles();
+startWaves();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<html>
+<head>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    .options, #option1, #option2, #option3, #option4, #option5, #option6, #option7, #option8{
+  border:2px solid black;
+  padding:4px;
+  margin:4px;
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-content:center;
+  font-family: 'Lato', sans-serif;
+}
+.blank1, .blank2, .blank3, .blank4, .blank5, .blank6, .blank7, .blank8 {
+  border-bottom:2px solid black;
+  padding:4px;
+  margin:4px;
+  margin-top: 0px;
+  width: 45px;
+  height: 20px;
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-content:center;
+  font-family: 'Lato', sans-serif;
+}
+ .sentence{
+  border:2px solid black;
+  padding:10px;
+  margin:10px;
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-content:center;
+  font-family: 'Lato', sans-serif;  
+}
+.each{
+background-color: plum;
+border:2px solid black;
+  padding:10px;
+  margin:10px;
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-content:center;
+  font-family: 'Lato', sans-serif;
+}
+/*.word1, .word2, .word3, .word4, .word5, .word6, .word7, .word8{
+  position: fixed;
+}*/
+
+  </style>
+
+
+</head>
+<body>
+   <div class="options col-md-9 col-sm-9" style="width: 97%">
+    Drop these words in the correct bucket
+  <div class="options col-md-12 col-sm-12" style="border: none;"  ondragstart="dragStart(event)">
+    <div class = "word" id="option1" draggable="true" ondragstart="dragStart(event)">Ron</div>
+    <div class = "word" id="option4" draggable="true" ondragstart="dragStart(event)">Come</div>
+    <div class = "word" id="option6" draggable="true" ondragstart="dragStart(event)">stop</div>
+    <div class = "word" id="option3" draggable="true" ondragstart="dragStart(event)">Is</div>
+    <div class = "word" id="option5" draggable="true" ondragstart="dragStart(event)">it</div>
+    <div class = "word" id="option7" draggable="true" ondragstart="dragStart(event)">Help</div>
+    <div class = "word" id="option8" draggable="true" ondragstart="dragStart(event)">help</div>
+    <div class = "word" id="option2" draggable="true" ondragstart="dragStart(event)">here</div>
+  </div>
+ </div>
+  <div class = "container">
+    <div class="each sentence col-sm-5 col-md-5">
+      Look in here, Ron? Not in here. 
+    </div>
+    <div class="sentence col-sm-5 col-md-5">
+      Look in here,  <div class="blank1" ondrop="dropped(event)" ondragover="allowDrop(event)"></div>? Not in <div class="blank2"  ondrop="dropped(event)" ondragover="allowDrop(event)"></div>. 
+    </div>
+   
+    
+  </div>
+  <div class = "container">
+    
+    <div class="each sentence col-sm-5 col-md-5">
+      Rocky, stop it! 
+    </div>  
+    <div class="sentence col-sm-5 col-md-5">
+      Rocky, <div style="height: 16px" class="blank6"  ondrop="dropped(event)" ondragover="allowDrop(event)"></div> it! 
+    </div>
+    
+  </div>
+  <footer class="container">
+    <div class="sentence col-sm-5 col-md-5">
+      Rocky, <div style="height: 16px" class="blank6"  ondrop="dropped(event)" ondragover="allowDrop(event)"></div> it! 
+    </div>
+    <div class="sentence col-sm-5 col-md-5">
+      Rocky, <div style="height: 16px" class="blank6"  ondrop="dropped(event)" ondragover="allowDrop(event)"></div> it! 
+    </div>
+    <div class="sentence col-sm-5 col-md-5">
+      Rocky, <div style="height: 16px" class="blank6"  ondrop="dropped(event)" ondragover="allowDrop(event)"></div> it! 
+    </div>
+    <div class="sentence col-sm-5 col-md-5">
+      Rocky, <div style="height: 16px" class="blank6"  ondrop="dropped(event)" ondragover="allowDrop(event)"></div> it! 
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript">
+
+function dragStart(ev){
+  ev.dataTransfer.setData("text",ev.target.id);
+  //alert(ev.target.id);
+}
+
+function dropped(ev)
+{
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  var datal = document.getElementById(data);
+  var test = ev.target.appendChild(datal);
+  var a = 0;
+      if(ev.target.className=="blank1")
+        {
+        datal.setAttribute('draggable', 'false');
+        //datal.style.position = "";
+          if(data=="option1")
+           { datal.style.color="white";;datal.style.backgroundColor="green"; a++; }
+          else
+            { datal.style.color="white";;datal.style.backgroundColor="red"; }
+        }
+      if(ev.target.className == "blank2")
+        {
+        datal.setAttribute('draggable', 'false');
+          if(data=="option2")
+           { datal.style.color="white";;datal.style.backgroundColor="green"; a++; }
+          else
+            { datal.style.color="white";;datal.style.backgroundColor="red"; }
+        }
+      if(ev.target.className == "blank3")
+        {
+        datal.setAttribute('draggable', 'false');
+          if(data=="option3")
+           { datal.style.color="white";;datal.style.backgroundColor="green"; a++; }
+          else
+            { datal.style.color="white";;datal.style.backgroundColor="red"; }
+        }
+        if(ev.target.className == "blank4")
+        {
+        datal.setAttribute('draggable', 'false');
+          if(data=="option4")
+           { datal.style.color="white";;datal.style.backgroundColor="green"; a++; }
+          else
+            { datal.style.color="white";;datal.style.backgroundColor="red"; }
+        }
+        if(ev.target.className == "blank5")
+        {
+        datal.setAttribute('draggable', 'false');
+          if(data=="option5")
+           { datal.style.color="white";;datal.style.backgroundColor="green"; a++; }
+          else
+            { datal.style.color="white";;datal.style.backgroundColor="red"; }
+        }
+        if(ev.target.className == "blank6")
+        {
+        datal.setAttribute('draggable', 'false');
+          if(data=="option6")
+           { datal.style.color="white";;datal.style.backgroundColor="green"; a++; }
+          else
+            { datal.style.color="white";;datal.style.backgroundColor="red"; }
+        }
+        if(ev.target.className == "blank7")
+        {
+        datal.setAttribute('draggable', 'false');
+          if(data=="option7")
+           { datal.style.color="white";;datal.style.backgroundColor="green"; a++; }
+          else
+            { datal.style.color="white";;datal.style.backgroundColor="red"; }
+        }
+        if(ev.target.className == "blank8")
+        {
+        datal.setAttribute('draggable', 'false');
+          if(data=="option8")
+           { datal.style.color="white";;datal.style.backgroundColor="green"; a++; }
+          else
+            { datal.style.color="white";;datal.style.backgroundColor="red"; }
+        }
+}
+function allowDrop(ev)
+{
+  ev.preventDefault();
+}
+/*
+$(document).ready(function(){
+    animateDiv('.word1');
+    animateDiv('.word2');
+    animateDiv('.word3');
+    animateDiv('.word4');
+    animateDiv('.word5');
+    animateDiv('.word6');
+    animateDiv('.word7');
+    animateDiv('.word8');
+});
+$('body').click(function(){
+  animateDiv('.word1');
+    animateDiv('.word2');
+    animateDiv('.word3');
+    animateDiv('.word4');
+    animateDiv('.word5');
+    animateDiv('.word6');
+    animateDiv('.word7');
+    animateDiv('.word8');
+})
+
+function makeNewPosition(arg){
+    
+    // Get viewport dimensions (remove the dimension of the div)
+    var h = $(window).height() - 50;
+    var w = $(window).width() - 50;
+    
+    var nh = Math.floor(Math.random() * h);
+    var nw = Math.floor(Math.random() * w);
+    
+    if(arg = "new")return [nh,nw];
+    if(arg = "old")return[h,w];    
+    
+}
+
+function animateDiv(myclass){
+    var newq = makeNewPosition("new");
+    var oldq = makeNewPosition("old");
+    $(myclass).animate({ top: newq[0], left: newq[1] }, 1000,   function(){
+      //animateDiv(myclass);        
+    });
+    
+
+}*/
+ /*
+    $.fn.shuffle =  function() {
+ 
+        var allElems = this.get(),
+            getRandom = function(max) {
+                return Math.floor(Math.random() * max);
+            },
+            shuffled = $.map(allElems, function(){
+                var random = getRandom(allElems.length),
+                    randEl = $(allElems[random]).clone(true)[0];
+                allElems.splice(random, 1);
+                return randEl;
+           });
+ 
+        this.each(function(i){
+            $(this).replaceWith($(shuffled[i]));
+        });
+ 
+        return $(shuffled);
+ 
+    };
+ 
+
+$('.options').shuffle(); */ 
+  </script>
+</body>
+</html>

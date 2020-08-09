@@ -1,0 +1,100 @@
+<html>
+<head>
+<style type="text/css">
+	div{
+  border:2px solid black;
+  padding:10px;
+  margin:10px;
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-content:center;
+  font-family: 'Lato', sans-serif;
+}
+
+.container{
+  height:500px;
+  background:#FFDA2F;
+  
+}
+.rightPane, .nouns{
+ 
+ flex-content:space-around;
+}
+
+.leftPane, .verbs{
+  flex-direction:column;
+  justify-content: center;
+}
+
+.middlePane, .words{
+  justify-content:center;
+}
+
+#green{
+  color:green;
+}
+
+#red{
+  color:red;
+}
+</style>
+</head>
+<body>
+	<div class="container"> 
+ 
+    <div class="verbs" ondrop="dropped(event)" ondragover="allowDrop(event)">Hint: Verbs are action words
+    </div>
+ 
+  <div class="middlePane">Put these words in the correct box! <b id="green">Correct</b> box will turn it <b id="green">green!</b> or turn it <b id="red">red</b> for <b id="red">incorrect!</b> 
+    <div class="words"  ondragstart="dragStart(event)">
+    <div id="word1" draggable="true" ondragstart="dragStart(event)">run</div>
+    <div id="word2" draggable="true" ondragstart="dragStart(event)">jump</div>
+    <div id="word3" draggable="true" ondragstart="dragStart(event)">elephant</div>
+    <div id="word4" draggable="true" ondragstart="dragStart(event)">Taj Mahal</div>
+  </div>
+ </div>
+  
+  <div class="rightPane"  ondrop="dropped(event)" ondragover="allowDrop(event)">
+    <div class="nouns">Put the nouns in the box below!    Hint: nouns are names of animals, places or things!</div>
+  </div>  
+</div> 
+<script type="text/javascript">
+	//creating verbs and nouns array 
+var verbs = ["word1","word2"];
+var nouns = ["word3","word4"];
+
+function dragStart(ev){
+  ev.dataTransfer.setData("text",ev.target.id);
+  alert(ev.target.id);
+}
+
+function dropped(ev)
+{
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  var dataEl = document.getElementById(data);
+  var test = ev.target.appendChild(dataEl);
+      if(ev.target.className=="verbs")
+        {
+          if(data==verbs[0] || data==verbs[1])
+           { dataEl.style.backgroundColor="green"; }
+          else
+            { dataEl.style.backgroundColor="red"; }
+        }
+      else
+        {
+          if(data==nouns[0] || data==nouns[1])
+           { dataEl.style.backgroundColor="green"; }
+          else
+            { dataEl.style.backgroundColor="red"; }
+        }
+}
+function allowDrop(ev)
+{
+  ev.preventDefault();
+}
+</script>
+</body>
+</html>
